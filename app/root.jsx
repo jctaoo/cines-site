@@ -3,8 +3,9 @@ import {
   ChakraProvider,
   Stack,
   Heading,
-  Box,
+  Container,
   Skeleton,
+  Text
 } from "@chakra-ui/react";
 import { Document } from "./components";
 import { Ghost } from "react-kawaii";
@@ -28,19 +29,21 @@ export function ErrorBoundary({ error }) {
   return (
     <Document>
       <ChakraProvider>
-        <Box
+        <Container
           display="flex"
           justifyContent="center"
           alignItems="center"
           h="100vh"
+          maxW="lg"
         >
           <Stack alignItems="center" spacing={5} mb="120px">
             <ClientOnly fallback={<Skeleton height="240px" width="240px" />}>
               <Ghost size={240} mood="blissful" color="#E0E4E8" />
             </ClientOnly>
-            <Heading as="h1">There was an error {error.message}</Heading>
+            <Heading as="h1">There was an error</Heading>
+            <Text align="center">{ error.message }</Text>
           </Stack>
-        </Box>
+        </Container>
       </ChakraProvider>
     </Document>
   );
